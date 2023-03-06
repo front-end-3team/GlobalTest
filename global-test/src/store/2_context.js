@@ -1,16 +1,16 @@
-import { createContext, useState } from 'react';
+import { useState } from "react";
+import { createContext } from "react";
+export const myContext = createContext();
 
-// 비어 있는 저장소
-export const ModalContext = createContext();
-
-const ModalContextProvider = ({ children }) => {
+const ContextModalPage = ({ children }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <ModalContext.Provider value={[isModalOpen, setIsModalOpen]}>
-            {children}
-        </ModalContext.Provider>
+        <>
+            <myContext.Provider value={{ isModalOpen, setIsModalOpen }}>
+                {children}
+            </myContext.Provider>
+        </>
     );
 };
-
-export default ModalContextProvider;
+export default ContextModalPage;

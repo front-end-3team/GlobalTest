@@ -1,16 +1,15 @@
-import { useContext, useState } from 'react';
-import NavigateButton from '../../../../components/NavigateButton';
-import ModalContextProvider, { ModalContext } from '../../../../store/2_context';
-import ContextQ1Detail from '../atom/Q1/Detail';
-import ContextQ1Modal from '../atom/Q1/Modal';
-
+import { useContext } from "react";
+import NavigateButton from "../../../../components/NavigateButton";
+import ContextQ1Detail from "../atom/Q1/Detail";
+import ContextQ1Modal from "../atom/Q1/Modal";
+import { myContext } from "../../../../store/2_context";
 const ContextQ1Page = () => {
     /* 
         문제 2-1)
         전역 모달창 띄우기
 
         1) ContextQ1Detail, ContextQ1Detail2 두 컴포넌트의 보이기 버튼이 눌려야만 모달창이 보여야 합니다.
-            모달창이 보이는 상태일 때는 숨기기 텍스트로 바뀌어 모달창을 닫을 수 있어야 합니다.
+          모달창이 보이는 상태일 때는 숨기기 텍스트로 바뀌어 모달창을 닫을 수 있어야 합니다.
 
         2) 모달창은 현재 위치인 Detail 컴포넌트의 가장 바깥쪽 div에 렌더링 되어야 합니다.
         3) 모달창은 ContextQ1Modal 컴포넌트를 사용합니다.
@@ -20,18 +19,17 @@ const ContextQ1Page = () => {
         src/stor/2_context.js 파일에 context를 구현해주세요
     */
 
-    // const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isModalOpen } = useContext(myContext);
+
     // 위의 상태를 전역으로 관리하여 ContextQ1Detail, ContextQ1Detail2 두 컴포넌트의 보이기 버튼이 눌려도 모달창이 열릴 수 있도록 해주세요 :)
-    const [isModalOpen, setIsModalOpen] = useContext(ModalContext);
 
     return (
         <div>
             {isModalOpen && <ContextQ1Modal />}
             <h2>문제 2 - 1</h2>
             <ContextQ1Detail />
-            <NavigateButton to={'/2_context/q2'} />
+            <NavigateButton to={"/2_context/q2"} />
         </div>
     );
 };
-
 export default ContextQ1Page;
